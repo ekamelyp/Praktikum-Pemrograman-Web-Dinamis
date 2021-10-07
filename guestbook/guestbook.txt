@@ -1,0 +1,3 @@
+Eka Putra|Jogja|ekaputra@gmail.com|Single|Coba
+Beni|Lampung|beni@gmail.com|Menikah|Tes
+Santo|Semarang|santo@gmail.com|Single|Jomblo
