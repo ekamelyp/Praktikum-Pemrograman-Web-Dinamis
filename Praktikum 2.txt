@@ -120,3 +120,146 @@ MariaDB [akademik]> SELECT * FROM mahasiswa WHERE alamat='Solo';
 |  2 | MHS02 | Rita        | P    | Solo   | 1999-01-01 |
 +----+-------+-------------+------+--------+------------+
 2 rows in set (0.000 sec)
+
+MariaDB [akademik]> ALTER TABLE mahasiswa
+    -> ADD COLUMN IF NOT EXISTS
+    -> ipk float;
+Query OK, 0 rows affected (0.027 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [akademik]> INSERT INTO `mahasiswa` VALUES
+    -> (5,'MHS05','Eka','P','Lampung','2000-01-24','3.71'),
+    -> (6,'MHS06','Meliyani','P','Yogyakarta','1999-12-24',3.60),
+    -> (7,'MHS07','Putra','L','Jakarta','1998-08-25',4.00);
+Query OK, 3 rows affected (0.005 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+MariaDB [akademik]> SELECT * FROM mahasiswa;
++----+-------+-------------+------+------------+------------+------+
+| id | nim   | nama        | jk   | alamat     | tgllhr     | ipk  |
++----+-------+-------------+------+------------+------------+------+
+|  1 | MHS01 | Siti Aminah | P    | Solo       | 1995-10-01 | NULL |
+|  2 | MHS02 | Rita        | P    | Solo       | 1999-01-01 | NULL |
+|  3 | MHS03 | Amirudin    | L    | Semarang   | 1998-08-11 | NULL |
+|  4 | MHS04 | Siti Maryam | P    | Jakarta    | 1995-04-15 | NULL |
+|  5 | MHS05 | Eka         | P    | Lampung    | 2000-01-24 | 3.71 |
+|  6 | MHS06 | Meliyani    | P    | Yogyakarta | 1999-12-24 |  3.6 |
+|  7 | MHS07 | Putra       | L    | Jakarta    | 1998-08-25 |    4 |
++----+-------+-------------+------+------------+------------+------+
+7 rows in set (0.001 sec)
+
+MariaDB [akademik]> SELECT * FROM mahasiswa WHERE nama='Siti';
+Empty set (0.001 sec)
+
+MariaDB [akademik]> SELECT nim,nama,jk,ipk FROM mahasiswa;
++-------+-------------+------+------+
+| nim   | nama        | jk   | ipk  |
++-------+-------------+------+------+
+| MHS01 | Siti Aminah | P    | NULL |
+| MHS02 | Rita        | P    | NULL |
+| MHS03 | Amirudin    | L    | NULL |
+| MHS04 | Siti Maryam | P    | NULL |
+| MHS05 | Eka         | P    | 3.71 |
+| MHS06 | Meliyani    | P    |  3.6 |
+| MHS07 | Putra       | L    |    4 |
++-------+-------------+------+------+
+7 rows in set (0.001 sec)
+
+MariaDB [akademik]> SELECT nim,nama,jk,ipk FROM mahasiswa WHERE ipk=3.71;
+Empty set (0.007 sec)
+
+MariaDB [akademik]> SELECT nim,nama,jk,ipk FROM mahasiswa WHERE ipk='3.71';
+Empty set (0.000 sec)
+
+MariaDB [akademik]> SELECT nim,nama,jk,ipk FROM mahasiswa WHERE ipk=4;
++-------+-------+------+------+
+| nim   | nama  | jk   | ipk  |
++-------+-------+------+------+
+| MHS07 | Putra | L    |    4 |
++-------+-------+------+------+
+1 row in set (0.003 sec)
+
+MariaDB [akademik]> SELECT nim,nama,jk,ipk FROM mahasiswa WHERE ipk>=3.60;
++-------+-------+------+------+
+| nim   | nama  | jk   | ipk  |
++-------+-------+------+------+
+| MHS05 | Eka   | P    | 3.71 |
+| MHS07 | Putra | L    |    4 |
++-------+-------+------+------+
+2 rows in set (0.000 sec)
+
+MariaDB [akademik]> SELECT * FROM mahasiswa WHERE ipk>=3.6 AND jk='P';
++----+-------+------+------+---------+------------+------+
+| id | nim   | nama | jk   | alamat  | tgllhr     | ipk  |
++----+-------+------+------+---------+------------+------+
+|  5 | MHS05 | Eka  | P    | Lampung | 2000-01-24 | 3.71 |
++----+-------+------+------+---------+------------+------+
+1 row in set (0.001 sec)
+
+MariaDB [akademik]> SELECT * FROM mahasiswa WHERE jk='P';
++----+-------+-------------+------+------------+------------+------+
+| id | nim   | nama        | jk   | alamat     | tgllhr     | ipk  |
++----+-------+-------------+------+------------+------------+------+
+|  1 | MHS01 | Siti Aminah | P    | Solo       | 1995-10-01 | NULL |
+|  2 | MHS02 | Rita        | P    | Solo       | 1999-01-01 | NULL |
+|  4 | MHS04 | Siti Maryam | P    | Jakarta    | 1995-04-15 | NULL |
+|  5 | MHS05 | Eka         | P    | Lampung    | 2000-01-24 | 3.71 |
+|  6 | MHS06 | Meliyani    | P    | Yogyakarta | 1999-12-24 |  3.6 |
++----+-------+-------------+------+------------+------------+------+
+5 rows in set (0.001 sec)
+
+MariaDB [akademik]> UPDATE mahasiswa SET ipk=3.55 WHERE nama='Rita';
+Query OK, 1 row affected (0.003 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [akademik]> SELECT * FROM mahasiswa;
++----+-------+-------------+------+------------+------------+------+
+| id | nim   | nama        | jk   | alamat     | tgllhr     | ipk  |
++----+-------+-------------+------+------------+------------+------+
+|  1 | MHS01 | Siti Aminah | P    | Solo       | 1995-10-01 | NULL |
+|  2 | MHS02 | Rita        | P    | Solo       | 1999-01-01 | 3.55 |
+|  3 | MHS03 | Amirudin    | L    | Semarang   | 1998-08-11 | NULL |
+|  4 | MHS04 | Siti Maryam | P    | Jakarta    | 1995-04-15 | NULL |
+|  5 | MHS05 | Eka         | P    | Lampung    | 2000-01-24 | 3.71 |
+|  6 | MHS06 | Meliyani    | P    | Yogyakarta | 1999-12-24 |  3.6 |
+|  7 | MHS07 | Putra       | L    | Jakarta    | 1998-08-25 |    4 |
++----+-------+-------------+------+------------+------------+------+
+7 rows in set (0.000 sec)
+
+MariaDB [akademik]> UPDATE mahasiswa SET ipk=4.00 WHERE nama='Siti Maryam';
+Query OK, 1 row affected (0.004 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [akademik]> UPDATE mahasiswa SET ipk=3.80 WHERE nama='Amirudin';
+Query OK, 1 row affected (0.004 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [akademik]> SELECT * FROM mahasiswa;
++----+-------+-------------+------+------------+------------+------+
+| id | nim   | nama        | jk   | alamat     | tgllhr     | ipk  |
++----+-------+-------------+------+------------+------------+------+
+|  1 | MHS01 | Siti Aminah | P    | Solo       | 1995-10-01 | NULL |
+|  2 | MHS02 | Rita        | P    | Solo       | 1999-01-01 | 3.55 |
+|  3 | MHS03 | Amirudin    | L    | Semarang   | 1998-08-11 |  3.8 |
+|  4 | MHS04 | Siti Maryam | P    | Jakarta    | 1995-04-15 |    4 |
+|  5 | MHS05 | Eka         | P    | Lampung    | 2000-01-24 | 3.71 |
+|  6 | MHS06 | Meliyani    | P    | Yogyakarta | 1999-12-24 |  3.6 |
+|  7 | MHS07 | Putra       | L    | Jakarta    | 1998-08-25 |    4 |
++----+-------+-------------+------+------------+------------+------+
+7 rows in set (0.000 sec)
+
+MariaDB [akademik]> DELETE FROM mahasiswa WHERE nim='MHS01';
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [akademik]> SELECT * FROM mahasiswa;
++----+-------+-------------+------+------------+------------+------+
+| id | nim   | nama        | jk   | alamat     | tgllhr     | ipk  |
++----+-------+-------------+------+------------+------------+------+
+|  2 | MHS02 | Rita        | P    | Solo       | 1999-01-01 | 3.55 |
+|  3 | MHS03 | Amirudin    | L    | Semarang   | 1998-08-11 |  3.8 |
+|  4 | MHS04 | Siti Maryam | P    | Jakarta    | 1995-04-15 |    4 |
+|  5 | MHS05 | Eka         | P    | Lampung    | 2000-01-24 | 3.71 |
+|  6 | MHS06 | Meliyani    | P    | Yogyakarta | 1999-12-24 |  3.6 |
+|  7 | MHS07 | Putra       | L    | Jakarta    | 1998-08-25 |    4 |
++----+-------+-------------+------+------------+------------+------+
+6 rows in set (0.000 sec)
