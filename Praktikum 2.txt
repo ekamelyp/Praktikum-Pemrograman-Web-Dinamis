@@ -1,0 +1,122 @@
+Setting environment for using XAMPP for Windows.
+ASUS@LAPTOP-KRSHJ7GO d:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 67
+Server version: 10.4.13-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> CREATE DATABASE akademik;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| akademik           |
+| ci4                |
+| db_dapodik         |
+| db_dapodik2        |
+| db_desa            |
+| db_desa_jangga     |
+| db_desa_pekalongan |
+| db_foodcourt       |
+| db_petcare         |
+| db_petcare2        |
+| db_rentalmobil     |
+| db_rs              |
+| desa_db            |
+| desa_pekalongan    |
+| foodorderigniter   |
+| information_schema |
+| kk                 |
+| mysql              |
+| performance_schema |
+| petcare            |
+| petcareuad         |
+| phpmyadmin         |
+| postest4kk         |
+| punyaaldimas       |
+| responsi_kk        |
+| si_akademik        |
+| siwades            |
+| tb_biodata         |
+| test               |
+| wblokodinasv1      |
+| youtube_desa       |
++--------------------+
+31 rows in set (0.005 sec)
+
+MariaDB [(none)]> USE akademik;
+Database changed
+MariaDB [akademik]> CREATE TABLE 'mahasiswa' (
+    -> 'id' int NOT NULL AUTO_INCREMENT,
+    -> 'nim' varchar(10) NOT NULL,
+    -> 'nama' varchar(50) NOT NULL,
+    -> 'jk' varchar(1),
+    -> 'alamat' text,
+    -> 'tgllhr' date,
+    -> PRIMARY KEY ('id')
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''mahasiswa' (
+'id' int NOT NULL AUTO_INCREMENT,
+'nim' varchar(10) NOT NULL,
+'...' at line 1
+MariaDB [akademik]> CREATE TABLE mahasiswa (
+    -> id int NOT NULL AUTO_INCREMENT,
+    -> nim varchar(10) NOT NULL,
+    -> nama varchar(50) NOT NULL,
+    -> jk varchar(1),
+    -> alamat text,
+    -> tgllhr date,
+    -> PRIMARY KEY (id)
+    -> );
+Query OK, 0 rows affected (0.046 sec)
+
+MariaDB [akademik]> SHOW TABLES;
++--------------------+
+| Tables_in_akademik |
++--------------------+
+| mahasiswa          |
++--------------------+
+1 row in set (0.001 sec)
+
+MariaDB [akademik]> INSERT INTO mahasiswa VALUES
+    -> (1,'MHS01','Siti Aminah','P','Solo','1995-10-01');
+Query OK, 1 row affected (0.012 sec)
+
+MariaDB [akademik]> INSERT INTO mahasiswa VALUES
+    -> (2,'MHS02','Rita','P','Solo','1999-01-01');
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [akademik]> INSERT INTO `mahasiswa` VALUES
+    -> (3,'MHS03','Amirudin','L','Semarang','1998-08-11');
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [akademik]> INSERT INTO `mahasiswa` VALUES
+    -> (4,'MHS04','Siti Maryam','P','Jakarta','1995-04-15');
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [akademik]> SELECT * FROM mahasiswa;
++----+-------+-------------+------+----------+------------+
+| id | nim   | nama        | jk   | alamat   | tgllhr     |
++----+-------+-------------+------+----------+------------+
+|  1 | MHS01 | Siti Aminah | P    | Solo     | 1995-10-01 |
+|  2 | MHS02 | Rita        | P    | Solo     | 1999-01-01 |
+|  3 | MHS03 | Amirudin    | L    | Semarang | 1998-08-11 |
+|  4 | MHS04 | Siti Maryam | P    | Jakarta  | 1995-04-15 |
++----+-------+-------------+------+----------+------------+
+4 rows in set (0.000 sec)
+
+MariaDB [akademik]> SELECT * FROM mahasiswa WHERE alamat='Solo';
++----+-------+-------------+------+--------+------------+
+| id | nim   | nama        | jk   | alamat | tgllhr     |
++----+-------+-------------+------+--------+------------+
+|  1 | MHS01 | Siti Aminah | P    | Solo   | 1995-10-01 |
+|  2 | MHS02 | Rita        | P    | Solo   | 1999-01-01 |
++----+-------+-------------+------+--------+------------+
+2 rows in set (0.000 sec)
