@@ -130,6 +130,19 @@
             ?>
         </tbody>
     </table>
+    
+    <?php
+    echo "<h2>Data yang anda isi:</h2>";
+    echo "<td>$nama</td>";
+    echo "<br>";
+    echo "<td>$email</td>";
+    echo "<br>";
+    echo "<td>$website</td>";
+    echo "<br>";
+    echo "<td>$comment</td>";
+    echo "<br>";
+    echo "<td>$gender</td>";
+    ?>
 </body>
 
 </html>
