@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Okt 2021 pada 17.17
+-- Waktu pembuatan: 30 Okt 2021 pada 07.44
 -- Versi server: 10.4.13-MariaDB
 -- Versi PHP: 7.4.7
 
@@ -48,7 +48,8 @@ INSERT INTO `mahasiswa` (`id`, `nim`, `nama`, `jk`, `alamat`, `tgllhr`, `ipk`) V
 (7, '1700018213', 'Putra', 'L', 'Jakarta', '1998-08-25', 4),
 (8, '1800018227', 'Eka Meliyani Putri', 'P', 'Lampung', '2000-01-24', 4),
 (9, '1800018001', 'Agung Putra Pratama', 'L', 'Yogyakarta', '1999-03-11', 3.5),
-(11, '1500018123', 'Ayu Septiana', 'p', 'Yogyakarta', '1999-12-11', 3.7);
+(11, '1500018123', 'Ayu Septiana', 'p', 'Yogyakarta', '1999-12-11', 3.7),
+(12, '1800018050', 'Adam Sanjaya', 'L', '', '0000-00-00', 3.66);
 
 --
 -- Indexes for dumped tables
@@ -68,7 +69,7 @@ ALTER TABLE `mahasiswa`
 -- AUTO_INCREMENT untuk tabel `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
